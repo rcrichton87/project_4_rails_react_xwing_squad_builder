@@ -13,6 +13,14 @@ class SquadsController < ApplicationController
               },
             ship: {
               only: [:id, :name, :cost, :faction, :stats, :upgrade_slots]
+            },
+            applied_upgrades: {
+              only: [:id],
+              include: {
+                upgrade: {
+                  only: [:id, :name, :cost, :text]
+                }
+              }
             }
           }
         }
