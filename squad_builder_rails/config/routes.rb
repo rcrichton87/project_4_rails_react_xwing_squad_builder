@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   scope path: "api" do
     resources :squads, defaults: {format: :json}
     resources :ships, defaults: {format: :json}
+    resources :upgrades, defaults: {format: :json}
   end
 
   resources :users

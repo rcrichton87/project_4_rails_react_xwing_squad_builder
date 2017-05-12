@@ -1,5 +1,4 @@
 class ShipsController < ApplicationController
-  before_action :authenticate_user!
 
   def index
     render json: Ship.all.as_json({
