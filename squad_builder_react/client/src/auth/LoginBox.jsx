@@ -1,7 +1,5 @@
 import React from 'react'
 import SignIn from './SignIn'
-import SignUp from './SignUp' 
-import SignOut from './SignOut'
 import AjaxRequest from '../services/AjaxRequest'
 
 class LoginBox extends React.Component {
@@ -20,7 +18,7 @@ class LoginBox extends React.Component {
 
   fetchUser(){
     const req = new AjaxRequest()
-    req.get(`${this.props.url}users.json`, (err, user, status) => { 
+    req.get(`${this.props.url}users`, (err, user, status) => { 
       if (err) { 
         throw err
       } 
@@ -45,12 +43,10 @@ class LoginBox extends React.Component {
       var mainDiv = <div>
         <h4> Please Sign In/Up </h4>
         <SignIn url={this.props.url + "users/sign_in.json"} onSignIn={this.setUser}></SignIn>
-        <SignUp url={this.props.url + "users.json"} onSignUp={this.setUser}></SignUp>
       </div>
       if(this.state.currentUser){
         mainDiv = <div>
           <h4> Welcome {this.state.currentUser.email}</h4>
-          <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
         </div>
       }
       return (

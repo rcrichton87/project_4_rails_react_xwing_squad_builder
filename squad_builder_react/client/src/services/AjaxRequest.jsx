@@ -1,36 +1,36 @@
 class AjaxRequest{
 
-  constructor(){
-    this.xhr = new XMLHttpRequest()
-    this.xhr.withCredentials = true
-  }
+  get(url, done){
+    const xhr = new XMLHttpRequest()
+    xhr.withCredentials = true
+    console.log(xhr)
+    xhr.open("GET", url)
 
-  get(url, done){ 
-    this.xhr.open("GET", url)
-
-    this.xhr.onload = () => {
-      done(null, JSON.parse(this.xhr.response), this.xhr.status) 
+    xhr.onload = () => {
+      done(null, JSON.parse(xhr.response), xhr.status) 
     }
 
-    this.xhr.onerror = () => {
-      done(this.xhr.response) 
+    xhr.onerror = () => {
+      done(xhr.response) 
     }
-    this.xhr.send()
+    xhr.send()
   }
 
   post(url, payload, done){
-    this.xhr.open("POST", url)
+    const xhr = new XMLHttpRequest()
+    xhr.withCredentials = true
+    xhr.open("POST", url)
     xhr.setRequestHeader("Content-Type", "application/json")
 
-    this.xhr.onload = () => {
-      done(null, JSON.parse(this.xhr.response))
+    xhr.onload = () => {
+      done(null, JSON.parse(xhr.response))
     }
 
-    this.xhr.onerror = () => {
-      done(this.xhr.response)
+    xhr.onerror = () => {
+      done(xhr.response)
     }
 
-    this.xhr.send(payload)
+    xhr.send(payload)
   }
 
 }
