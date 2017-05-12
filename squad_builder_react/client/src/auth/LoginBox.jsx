@@ -6,7 +6,7 @@ import AjaxRequest from '../services/AjaxRequest'
 
 class LoginBox extends React.Component {
 
-  constructor(props) {
+  constructor(props){
     super(props)
     this.setUser = this.setUser.bind(this)
     this.state = {
@@ -15,7 +15,7 @@ class LoginBox extends React.Component {
   }
 
   setUser(user){
-    this.setState({currentUser:user})
+    this.setState({currentUser: user})
   }
 
   fetchUser(){
