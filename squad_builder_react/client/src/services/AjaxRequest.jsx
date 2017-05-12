@@ -33,6 +33,23 @@ class AjaxRequest{
     xhr.send(payload)
   }
 
+  delete(url, done){
+    const xhr = new XMLHttpRequest()
+    xhr.open("DELETE", url)
+    xhr.setRequestHeader("Content-Type", "application/json")
+    xhr.withCredentials = true
+
+    xhr.onload = () => {
+      done(null, xhr.status)
+    }
+
+    xhr.onerror = () => {
+      done(xhr.response)
+    }
+
+    xhr.send()
+  }
+
 }
 
 export default AjaxRequest

@@ -1,5 +1,6 @@
 import React from 'react'
 import SignIn from './SignIn'
+import SignOut from './SignOut'
 import AjaxRequest from '../services/AjaxRequest'
 
 class LoginBox extends React.Component {
@@ -23,8 +24,6 @@ class LoginBox extends React.Component {
         throw err
       } 
 
-      console.log(user)
-
       if(status === 200){ 
         this.setState({ 
           currentUser: user 
@@ -40,14 +39,15 @@ class LoginBox extends React.Component {
   }
 
   render () {
-    console.log(this.state.currentUser)
       var mainDiv = <div>
         <h4> Please Sign In/Up </h4>
         <SignIn url={this.props.url + "users/sign_in.json"} onSignIn={this.setUser}></SignIn>
       </div>
+
       if(this.state.currentUser){
         mainDiv = <div>
           <h4> Welcome {this.state.currentUser.email}</h4>
+          <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
         </div>
       }
       return (
