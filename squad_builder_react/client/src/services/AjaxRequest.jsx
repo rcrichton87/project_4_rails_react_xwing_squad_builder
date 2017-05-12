@@ -1,53 +1,51 @@
 class AjaxRequest{
 
+  constructor(){
+    this.xhr = new XMLHttpRequest()
+    this.xhr.withCredentials = true
+  }
+
   get(url, done){
-    const xhr = new XMLHttpRequest()
-    xhr.withCredentials = true
-    console.log(xhr)
-    xhr.open("GET", url)
+    this.xhr.open("GET", url)
 
-    xhr.onload = () => {
-      done(null, JSON.parse(xhr.response), xhr.status) 
+    this.xhr.onload = () => {
+      done(null, JSON.parse(this.xhr.response), this.xhr.status) 
     }
 
-    xhr.onerror = () => {
-      done(xhr.response) 
+    this.xhr.onerror = () => {
+      done(this.xhr.response) 
     }
-    xhr.send()
+    this.xhr.send()
   }
 
   post(url, payload, done){
-    const xhr = new XMLHttpRequest()
-    xhr.withCredentials = true
-    xhr.open("POST", url)
-    xhr.setRequestHeader("Content-Type", "application/json")
+    this.xhr.open("POST", url)
+    this.xhr.setRequestHeader("Content-Type", "application/json")
 
-    xhr.onload = () => {
-      done(null, JSON.parse(xhr.response))
+    this.xhr.onload = () => {
+      done(null, JSON.parse(this.xhr.response))
     }
 
-    xhr.onerror = () => {
-      done(xhr.response)
+    this.xhr.onerror = () => {
+      done(this.xhr.response)
     }
 
-    xhr.send(payload)
+    this.xhr.send(payload)
   }
 
   delete(url, done){
-    const xhr = new XMLHttpRequest()
-    xhr.open("DELETE", url)
-    xhr.setRequestHeader("Content-Type", "application/json")
-    xhr.withCredentials = true
+    this.xhr.open("DELETE", url)
+    this.xhr.setRequestHeader("Content-Type", "application/json")
 
-    xhr.onload = () => {
-      done(null, xhr.status)
+    this.xhr.onload = () => {
+      done(null, this.xhr.status)
     }
 
-    xhr.onerror = () => {
-      done(xhr.response)
+    this.xhr.onerror = () => {
+      done(this.xhr.response)
     }
 
-    xhr.send()
+    this.xhr.send()
   }
 
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import SignIn from './SignIn'
+import SignUp from './SignUp'
 import SignOut from './SignOut'
 import AjaxRequest from '../services/AjaxRequest'
 
@@ -42,6 +43,7 @@ class LoginBox extends React.Component {
       var mainDiv = <div>
         <h4> Please Sign In/Up </h4>
         <SignIn url={this.props.url + "users/sign_in.json"} onSignIn={this.setUser}></SignIn>
+        <SignUp url={this.props.url + "users.json"} onSignUp={this.setUser}></SignUp>
       </div>
 
       if(this.state.currentUser){
