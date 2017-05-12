@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Home from './components/Home'
 
 window.onload = function(){
   ReactDOM.render(
-    <h1> App Started </h1>,
+    <Home />,
     document.getElementById('app')
   );
 }

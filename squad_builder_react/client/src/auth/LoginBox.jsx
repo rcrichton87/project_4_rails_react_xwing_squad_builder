@@ -18,7 +18,7 @@ class LoginBox extends React.Component {
 
   fetchUser(){
     const req = new AjaxRequest()
-    req.get(`${this.props.url}users`, (err, user, status) => { 
+    req.get(`${this.props.url}users.json`, (err, user, status) => { 
       if (err) { 
         throw err
       } 
@@ -40,6 +40,7 @@ class LoginBox extends React.Component {
   }
 
   render () {
+    console.log(this.state.currentUser)
       var mainDiv = <div>
         <h4> Please Sign In/Up </h4>
         <SignIn url={this.props.url + "users/sign_in.json"} onSignIn={this.setUser}></SignIn>
