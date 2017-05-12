@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  faction: MyString
+  stats: MyString
+  cost: 1
+  upgrade_slots: MyString
+
+two:
+  name: MyString
+  faction: MyString
+  stats: MyString
+  cost: 1
+  upgrade_slots: MyString
