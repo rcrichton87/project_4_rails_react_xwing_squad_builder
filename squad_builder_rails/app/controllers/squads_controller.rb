@@ -65,6 +65,11 @@ class SquadsController < ApplicationController
     redirect_to "http://localhost:3000/#/squads/" + params[:id]
   end
 
+  def deleteShip
+    pilotedShip = PilotedShip.destroy(params[:piloted_ship_id])
+    redirect_to "http://localhost:3000/#/squads/" + params[:id]
+  end
+
   private
   def squad_params
     params.require(:squad).permit([:name, :faction, :user_id])

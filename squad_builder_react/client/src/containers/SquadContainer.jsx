@@ -10,7 +10,8 @@ class SquadContainer extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      squad: null
+      squad: null,
+      squadId: null
     }
   }
 
@@ -34,19 +35,20 @@ class SquadContainer extends React.Component {
  }
 
   render(){
+    console.log(this.state.squad)
     if(!this.state.squad){
       return(<div></div>)
     }
     const ships = this.state.squad.piloted_ships.map((pilotedShip, index) => {
       return(
-        <ShipDetails ship={pilotedShip} key={index} />
+        <ShipDetails squadId={this.props.match.params.id} ship={pilotedShip} key={index} />
       )
     })
     return(
       <div>
         <Navbar />
         <div className="squad-view">
-          <NewShipsContainer squadId={this.props.match.params.id} />
+          <NewShipsContainer squadId={this.state.squad.id} />
           <div>
             <p>{this.state.squad.name}</p>
             <ul>

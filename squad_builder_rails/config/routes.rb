@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :ships, defaults: {format: :json}
     resources :upgrades, defaults: {format: :json}
     post 'squads/:id/add_ship/:pilot_id/:ship_id' => 'squads#addShip'
+    post 'squads/:id/delete_ship/:piloted_ship_id' => 'squads#deleteShip'
   end
 
 

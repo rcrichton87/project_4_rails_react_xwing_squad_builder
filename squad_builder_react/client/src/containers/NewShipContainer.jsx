@@ -34,7 +34,7 @@ class NewShipContainer extends React.Component{
   }
 
   handleClick(pilot, ship){
-    this.setState({selectedShip: ship, selectedPilot: pilot})
+    this.setState({selectedPilot: pilot, selectedShip: ship})
     console.log('click')
   }
 

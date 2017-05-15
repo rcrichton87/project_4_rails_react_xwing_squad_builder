@@ -17,17 +17,27 @@ class ShipDetails extends React.Component {
   }
 
   render(){
+
+    const basicDetails = <div className="ship-details-top" onClick={this.handleClick}>
+      <p>{this.state.pilotedShip.ship.name} - {this.state.pilotedShip.pilot.name} - {this.state.pilotedShip.totalCost()}</p>
+
+      <form action={"http://localhost:5000/api/squads/" + this.props.squadId + "/delete_ship/" + this.state.pilotedShip.id} method="post">
+        <input type="submit" value="x"/>
+      </form>
+    </div>
+
     if(this.state.expanded){
       return(
-        <div onClick={this.handleClick} className="ship-container-expanded">
-          <p>{this.state.pilotedShip.ship.name} - {this.state.pilotedShip.pilot.name} - {this.state.pilotedShip.totalCost()}</p>
+        <div className="ship-container-expanded">
+
+          {basicDetails}
           <p>{this.state.pilotedShip.ship.stats}</p>
         </div>
       )
     } else {
       return(
-        <div onClick={this.handleClick} className="ship-container">
-          <p>{this.state.pilotedShip.ship.name} - {this.state.pilotedShip.pilot.name} - {this.state.pilotedShip.totalCost()}</p>
+        <div className="ship-container">
+          {basicDetails}
         </div>
       )
     }
