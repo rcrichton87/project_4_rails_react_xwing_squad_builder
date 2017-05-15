@@ -31,5 +31,10 @@ describe("PilotedShip", function(){
     assert.strictEqual(upgrades, pilotedShip.upgrades);
   })
 
+  it("can calculate total cost", function(){
+    assert.strictEqual(36, pilotedShip.totalCost());
+  })
+
+
 
 })

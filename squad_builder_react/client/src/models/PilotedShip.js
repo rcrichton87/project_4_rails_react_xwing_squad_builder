@@ -12,7 +12,6 @@ var PilotedShip = function(data) {
       this.upgrades.forEach(function(upgrade){
         total += upgrade.cost
       })
-
       return total
     }
 
