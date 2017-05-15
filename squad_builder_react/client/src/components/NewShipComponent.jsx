@@ -8,18 +8,11 @@ class NewShipComponent extends React.Component{
     this.state = {
       ship: props.ship
     }
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-  handleClick(event){
-    this.props.handleClick()
-    console.log(this)
-    console.log(event)
   }
 
   render(){
     const pilots = this.state.ship.pilots.map((pilot, index) => {
-      return(<PilotComponent key={index} onClick={this.handleClick} pilot={pilot} ship={this.props.ship} />)
+      return(<PilotComponent key={index} handleClick={this.props.handleClick} pilot={pilot} ship={this.state.ship} />)
     })
 
     return(

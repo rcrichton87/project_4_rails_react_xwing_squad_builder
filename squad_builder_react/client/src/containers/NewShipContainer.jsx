@@ -8,7 +8,8 @@ class NewShipContainer extends React.Component{
     super(props)
     this.state = {
       ships: [],
-      selectedPilot: null
+      selectedPilot: null,
+      selectedShip: null
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -32,16 +33,24 @@ class NewShipContainer extends React.Component{
     this.fetchShips()
   }
 
-  handleClick(){
+  handleClick(pilot, ship){
+    this.setState({selectedShip: ship, selectedPilot: pilot})
     console.log('click')
   }
 
   render(){
+    let addShip=<p>Select a Pilot</p>
+    if(this.state.selectedPilot && this.state.selectedShip){
+      addShip = <button>Add {this.state.selectedPilot.name}</button>
+    }
+
     const ships = this.state.ships.map((ship, index) => {
       return(<NewShipComponent key={index} ship={ship} handleClick={this.handleClick} />)
     })
+
     return(
       <div>
+        {addShip}
         {ships}
       </div>
     )
