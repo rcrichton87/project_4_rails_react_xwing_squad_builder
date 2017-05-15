@@ -21,6 +21,10 @@ describe("PilotedShip", function(){
 
   it("has a ship", function(){
     assert.strictEqual(ship, pilotedShip.ship);
+  })  
+
+  it("has a pilot", function(){
+    assert.strictEqual(pilot, pilotedShip.pilot);
   })
 
 
