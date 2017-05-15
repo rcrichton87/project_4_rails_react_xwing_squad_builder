@@ -3,6 +3,7 @@ import SignIn from './SignIn'
 import SignUp from './SignUp'
 import SignOut from './SignOut'
 import AjaxRequest from '../services/AjaxRequest'
+import { Link } from 'react-router-dom'
 
 class LoginBox extends React.Component {
 
@@ -50,6 +51,7 @@ class LoginBox extends React.Component {
         mainDiv = <div>
           <h4> Welcome {this.state.currentUser.email}</h4>
           <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
+          <li><Link to="/squads">View Squads</Link></li>
         </div>
       }
       return (
