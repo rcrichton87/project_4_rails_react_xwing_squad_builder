@@ -51,7 +51,7 @@ class LoginBox extends React.Component {
         mainDiv = <div>
           <h4> Welcome {this.state.currentUser.email}</h4>
           <SignOut url={this.props.url + "users/sign_out.json"} onSignOut={this.setUser}></SignOut>
-          <li><Link to="/squads">View Squads</Link></li>
+          <Link to="/squads">View Squads</Link>
         </div>
       }
       return (
