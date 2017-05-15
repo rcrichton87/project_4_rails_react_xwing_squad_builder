@@ -1,4 +1,5 @@
 import React from 'react'
+import ShipDetails from '../components/ShipDetails'
 
 class SquadContainer extends React.Component {
 
@@ -19,15 +20,19 @@ class SquadContainer extends React.Component {
     if(this.state.expanded){
       const ships = this.state.squad.piloted_ships.map((pilotedShip, index) => {
         return(
-          <li key={index}>{pilotedShip.ship.name} - {pilotedShip.pilot.name}</li>
+          <ShipDetails ship={pilotedShip} key={index} />
         )
       })
       return(
-        <div onClick={this.handleClick} className="squad-container">
-          <p>{this.state.squad.name}</p>
-          <ul>
-            {ships}
-          </ul>
+        <div>
+          <div onClick={this.handleClick} className="squad-container">
+            <p>{this.state.squad.name}</p>
+          </div>
+          <div>
+            <ul>
+              {ships}
+            </ul>
+          </div>
         </div>
       )
     } else {
