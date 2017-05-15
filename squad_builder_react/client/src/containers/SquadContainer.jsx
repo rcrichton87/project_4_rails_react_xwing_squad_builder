@@ -1,5 +1,6 @@
 import React from 'react'
 import ShipDetails from '../components/ShipDetails'
+import NewShipsContainer from '../containers/NewShipContainer'
 import Navbar from '../components/Navbar'
 import AjaxRequest from '../services/AjaxRequest'
 import { Link } from 'react-router-dom'
@@ -44,10 +45,15 @@ class SquadContainer extends React.Component {
     return(
       <div>
         <Navbar />
-        <p>{this.state.squad.name}</p>
-        <ul>
-          {ships}
-        </ul>
+        <div className="squad-view">
+          <NewShipsContainer />
+          <div>
+            <p>{this.state.squad.name}</p>
+            <ul>
+              {ships}
+            </ul>
+          </div>
+        </div>
       </div>
     )
   }
