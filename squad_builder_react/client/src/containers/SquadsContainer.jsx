@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
+import SquadContainer from '../containers/SquadContainer'
 import AjaxRequest from '../services/AjaxRequest'
 
 class SquadsContainer extends React.Component {
@@ -33,14 +33,13 @@ class SquadsContainer extends React.Component {
   }
 
   render(){
-    const squads = this.state.squads.map((squad) => {
-      return( <p>{squad.name}</p> )
+    const squads = this.state.squads.map((squad, index) => {
+      return( <SquadContainer squad={squad} key={index} /> )
     })
 
     return(
       <div className="squads-container">
           <Navbar />
-          <p>Squads go here</p>
           {squads}
       </div>
     )
