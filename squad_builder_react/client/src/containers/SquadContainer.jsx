@@ -14,7 +14,6 @@ class SquadContainer extends React.Component {
   }
 
  fetchSquad(){
-  console.log('fetch', this.props)
    const req = new AjaxRequest()
    req.get( `http://localhost:5000/api/squads/${this.props.match.params .id}`, (err, squad, status) => { 
      if (err) { 
@@ -22,7 +21,6 @@ class SquadContainer extends React.Component {
      } 
 
      if(status === 200){
-       console.log(squad)
        this.setState({ 
          squad: squad
        })

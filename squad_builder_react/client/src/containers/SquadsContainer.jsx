@@ -22,7 +22,6 @@ class SquadsContainer extends React.Component {
       } 
 
       if(status === 200){
-        console.log(squads)
         this.setState({ 
           squads: squads
         })
