@@ -1,5 +1,6 @@
 import React from 'react'
 import ShipDetails from '../components/ShipDetails'
+import Navbar from '../components/Navbar'
 import AjaxRequest from '../services/AjaxRequest'
 import { Link } from 'react-router-dom'
 
@@ -8,19 +9,14 @@ class SquadContainer extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      expanded: false
+      squad: null
     }
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-  handleClick(){
-    this.setState({expanded: !this.state.expanded})
   }
 
  fetchSquad(){
   console.log('fetch', this.props)
    const req = new AjaxRequest()
-   req.get( `http://localhost:5000/api/squads/${this.props.match.params.id}`, (err, squad, status) => { 
+   req.get( `http://localhost:5000/api/squads/${this.props.match.params .id}`, (err, squad, status) => { 
      if (err) { 
        throw err
      } 
@@ -42,35 +38,20 @@ class SquadContainer extends React.Component {
     if(!this.state.squad){
       return(<div></div>)
     }
-    if(this.state.expanded){
-      const ships = this.state.squad.piloted_ships.map((pilotedShip, index) => {
-        return(
-          <ShipDetails ship={pilotedShip} key={index} />
-        )
-      })
-
+    const ships = this.state.squad.piloted_ships.map((pilotedShip, index) => {
       return(
-        <div>
-          <div onClick={this.handleClick} className="squad-container">
-            <p>squad container</p>
-            <p>{this.state.squad.name}</p>
-            <Link to={"/" + this.state.squad.id} >Test</Link>
-          </div>
-          <div>
-            <ul>
-              {ships}
-            </ul>
-          </div>
-        </div>
+        <ShipDetails ship={pilotedShip} key={index} />
       )
-    } else {
-        return(
-         <div onClick={this.handleClick} className="squad-container">
-         <p>squad container</p>
-          <p>{this.state.squad.name}</p>
-        </div>
-      )
-    }
+    })
+    return(
+      <div>
+        <Navbar />
+        <p>{this.state.squad.name}</p>
+        <ul>
+          {ships}
+        </ul>
+      </div>
+    )
   }
 }
 
