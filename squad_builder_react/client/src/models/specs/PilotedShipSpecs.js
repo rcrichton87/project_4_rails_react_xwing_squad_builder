@@ -27,5 +27,9 @@ describe("PilotedShip", function(){
     assert.strictEqual(pilot, pilotedShip.pilot);
   })
 
+  it("has an upgrades array", function(){
+    assert.strictEqual(upgrades, pilotedShip.upgrades);
+  })
+
 
 })
