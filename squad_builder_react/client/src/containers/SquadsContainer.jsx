@@ -2,13 +2,15 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import SquadContainer from '../containers/SquadContainer'
 import AjaxRequest from '../services/AjaxRequest'
+import { Link } from 'react-router-dom'
 
 class SquadsContainer extends React.Component {
 
   constructor(props){
     super(props)
     this.state = {
-      squads: []
+      squads: [],
+      activeSquad: null
     }
   }
 
@@ -34,7 +36,7 @@ class SquadsContainer extends React.Component {
 
   render(){
     const squads = this.state.squads.map((squad, index) => {
-      return( <SquadContainer squad={squad} key={index} /> )
+      return( <Link key={index} to={"/" + squad.id} >{squad.name}</Link> )
     })
 
     return(
