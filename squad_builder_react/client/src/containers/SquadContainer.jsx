@@ -16,7 +16,7 @@ class SquadContainer extends React.Component {
 
  fetchSquad(){
    const req = new AjaxRequest()
-   req.get( `http://localhost:5000/api/squads/${this.props.match.params .id}`, (err, squad, status) => { 
+   req.get( `http://localhost:5000/api/squads/${this.props.match.params.id}`, (err, squad, status) => { 
      if (err) { 
        throw err
      } 
@@ -46,7 +46,7 @@ class SquadContainer extends React.Component {
       <div>
         <Navbar />
         <div className="squad-view">
-          <NewShipsContainer />
+          <NewShipsContainer squadId={this.props.match.params.id} />
           <div>
             <p>{this.state.squad.name}</p>
             <ul>

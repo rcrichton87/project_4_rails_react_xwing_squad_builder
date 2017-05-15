@@ -60,6 +60,11 @@ class SquadsController < ApplicationController
     })
   end
 
+  def addShip
+    pilotedShip = PilotedShip.create({squad_id: params[:id], pilot_id: params[:pilot_id], ship_id: params[:ship_id]})
+    redirect_to "http://localhost:3000/#/squads/" + params[:id]
+  end
+
   private
   def squad_params
     params.require(:squad).permit([:name, :faction, :user_id])

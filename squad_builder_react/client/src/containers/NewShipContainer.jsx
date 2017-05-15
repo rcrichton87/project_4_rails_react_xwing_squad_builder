@@ -41,7 +41,9 @@ class NewShipContainer extends React.Component{
   render(){
     let addShip=<p>Select a Pilot</p>
     if(this.state.selectedPilot && this.state.selectedShip){
-      addShip = <button>Add {this.state.selectedPilot.name}</button>
+      addShip = <form action={"http://localhost:5000/api/squads/" + this.props.squadId + "/add_ship/" + this.state.selectedPilot.id + "/" + this.state.selectedShip.id} method="post">
+        <input type="submit" value={"Add " + this.state.selectedPilot.name}/>
+      </form>
     }
 
     const ships = this.state.ships.map((ship, index) => {
