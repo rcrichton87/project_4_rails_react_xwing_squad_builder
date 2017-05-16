@@ -7,3 +7,8 @@
   display: flex;
   flex-direction: row;
 }
+
+.squads-list{
+  display: flex;
+  flex-direction: column;
+}

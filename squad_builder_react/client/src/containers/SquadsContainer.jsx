@@ -10,8 +10,8 @@ class SquadsContainer extends React.Component {
     super(props)
     this.state = {
       squads: [],
-      activeSquad: null
     }
+    this.deleteSquad = this.deleteSquad.bind(this)
   }
 
   fetchSquads(){
@@ -33,15 +33,30 @@ class SquadsContainer extends React.Component {
     this.fetchSquads()
   }
 
+  deleteSquad(event){
+    const squad = this.state.squads[event.target.value]
+    const req = new AjaxRequest()
+    req.delete("http://localhost:5000/api/squads/" + squad.id, (error, response) =>{
+      this.fetchSquads()
+    })
+  }
+
   render(){
     const squads = this.state.squads.map((squad, index) => {
-      return( <Link key={index} to={"/squads/show/" + squad.id} >{squad.name}</Link> )
+      return(
+        <div>
+          <Link key={index} to={"/squads/show/" + squad.id} >{squad.name}</Link>
+          <button value={index} onClick={this.deleteSquad}>x</button>
+        </div>
+      )
     })
 
     return(
       <div className="squads-container">
           <Navbar />
-          {squads}
+          <div className="squads-list">
+            {squads}
+          </div>
       </div>
     )
   }

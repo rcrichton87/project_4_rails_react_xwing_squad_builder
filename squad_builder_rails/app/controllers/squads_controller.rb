@@ -30,7 +30,7 @@ class SquadsController < ApplicationController
 
   def create
     squad = Squad.create( squad_params )
-    render json: {status: :Created}
+    redirect_to action: "show", status: 303, id: squad[:id]
   end
 
   def show
@@ -58,6 +58,11 @@ class SquadsController < ApplicationController
         }
       }
     })
+  end
+
+  def destroy
+    Squad.destroy(params[:id])
+    render json: {status: :deleted}
   end
 
   def addShip
