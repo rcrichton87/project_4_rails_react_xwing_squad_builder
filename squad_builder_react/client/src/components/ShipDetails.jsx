@@ -1,5 +1,6 @@
 import React from 'react'
 import PilotedShip from '../models/PilotedShip'
+import UpgradeSelector from '../components/UpgradeSelector'
 
 class ShipDetails extends React.Component {
 
@@ -27,17 +28,17 @@ class ShipDetails extends React.Component {
 
     let displayedUpgrades =[]
 
-    upgradeSlots.forEach((slot) => {
+    upgradeSlots.forEach((slot, index) => {
       let slotTaken = false
        upgradeObjects.forEach( (upgradeObject) => {
         console.log(upgradeObject)
         if(upgradeObject.appliedUpgrade.upgrade.slot === slot && !upgradeObject.applied){
-          displayedUpgrades.push(upgradeObject.appliedUpgrade.upgrade.name)
+          displayedUpgrades.push(<UpgradeSelector index={index} upgrade={upgradeObject.appliedUpgrade.upgrade.name} slot={slot} />)
           slotTaken = true
         }
       })
        if(!slotTaken){
-        displayedUpgrades.push(slot)
+        displayedUpgrades.push(<UpgradeSelector index={index} slot={slot} />)
        }
     })
 
@@ -55,7 +56,9 @@ class ShipDetails extends React.Component {
 
           {basicDetails}
           <p>{this.state.pilotedShip.ship.stats}</p>
-          {displayedUpgrades}
+          <div className="upgrades-container">
+            {displayedUpgrades}
+          </div>
         </div>
       )
     } else {
