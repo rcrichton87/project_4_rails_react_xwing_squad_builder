@@ -33,7 +33,7 @@ class ShipDetails extends React.Component {
        upgradeObjects.forEach( (upgradeObject) => {
         console.log(upgradeObject)
         if(upgradeObject.appliedUpgrade.upgrade.slot === slot && !upgradeObject.applied){
-          displayedUpgrades.push(<UpgradeSelector index={index} upgrade={upgradeObject.appliedUpgrade.upgrade.name} slot={slot} />)
+          displayedUpgrades.push(<UpgradeSelector index={index} upgrade={upgradeObject.appliedUpgrade} slot={slot} />)
           slotTaken = true
         }
       })

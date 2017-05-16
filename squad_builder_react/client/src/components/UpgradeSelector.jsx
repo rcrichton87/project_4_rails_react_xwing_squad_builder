@@ -46,13 +46,24 @@ class UpgradeSelector extends React.Component{
   }
 
   selectUpgrade(event){
-    console.log(event.target.value)
+    const selectedUpgrade = this.state.upgrades[event.target.value]
+    const req = new AjaxRequest()
+    if(selectedUpgrade && this.state.currentUpgrade){
+      req.post("http://localhost:5000/api/applied_upgrades/edit/" + this.state.currentUpgrade.id, JSON.stringify({upgrade_id: selectedUpgrade.id}), (error, response) => {
+        this.setState({currentUpgrade: {upgrade: response.upgrade}})
+      })
+    } else if (selectedUpgrade) {
+      console.log("picked an upgrade, none present")
+    } else {
+      console.log("picked none")
+    }
+
   }
 
   render(){
     let text
     if(this.state.currentUpgrade){
-      text = this.state.currentUpgrade
+      text = this.state.currentUpgrade.upgrade.name
     } else {
       text = this.state.slot
     }
