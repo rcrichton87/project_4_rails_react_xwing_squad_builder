@@ -12,8 +12,8 @@ user2 = User.create({email: "v4der@empire.com", password: 'password', password_c
 squad1 = Squad.create({user_id: user1[:id], name: "Rogue Squadron", faction: "Rebel"})
 squad2 = Squad.create({user_id: user1[:id], name: "The Force Awakens", faction: "Rebel"})
 
-ship1 = Ship.create({name: "T-65 X-Wing", cost: 21, faction: "Rebel", stats: "3,2,3,2", upgrade_slots: "astromech, torpedo, modification"})
-ship2 = Ship.create({name: "Y-Wing", cost: 18, faction: "Rebel", stats: "2,1,5,3", upgrade_slots: "astromech, torpedo, torpedo, modification, turret"})
+ship1 = Ship.create({name: "T-65 X-Wing", cost: 21, faction: "Rebel", stats: "3,2,3,2", upgrade_slots: "astromech,torpedo,modification"})
+ship2 = Ship.create({name: "Y-Wing", cost: 18, faction: "Rebel", stats: "2,1,5,3", upgrade_slots: "astromech,torpedo,torpedo,modification,turret"})
 
 pilot1 = Pilot.create({name: "Wedge Antilles", cost: 8, pilot_skill: 9, ability: "When attacking, reduce the defender's agility by 1", ship_id: ship1[:id]})
 pilot2 = Pilot.create({name: "Luke Skywalker", cost: 7, pilot_skill: 8, ability: "When defending, you may modify one focus result to an evade result", ship_id: ship1[:id]})

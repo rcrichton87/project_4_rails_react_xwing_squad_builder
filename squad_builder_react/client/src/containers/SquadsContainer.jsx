@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
+import SquadListDetails from '../components/SquadListDetails'
 import SquadContainer from '../containers/SquadContainer'
 import AjaxRequest from '../services/AjaxRequest'
 import { Link } from 'react-router-dom'
@@ -44,8 +45,8 @@ class SquadsContainer extends React.Component {
   render(){
     const squads = this.state.squads.map((squad, index) => {
       return(
-        <div>
-          <Link key={index} to={"/squads/show/" + squad.id} >{squad.name}</Link>
+        <div className="squad-list-item">
+          <SquadListDetails squad={squad} />
           <button value={index} onClick={this.deleteSquad}>x</button>
         </div>
       )

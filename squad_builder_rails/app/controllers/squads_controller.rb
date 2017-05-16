@@ -18,7 +18,7 @@ class SquadsController < ApplicationController
               only: [:id],
               include: {
                 upgrade: {
-                  only: [:id, :name, :cost, :text]
+                  only: [:id, :name, :cost, :text, :slot]
                 }
               }
             }
@@ -50,7 +50,7 @@ class SquadsController < ApplicationController
               only: [:id],
               include: {
                 upgrade: {
-                  only: [:id, :name, :cost, :text]
+                  only: [:id, :name, :cost, :text, :slot]
                 }
               }
             }

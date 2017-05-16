@@ -18,6 +18,29 @@ class ShipDetails extends React.Component {
 
   render(){
 
+    const pilotedShip = this.state.pilotedShip
+
+    const upgradeSlots = pilotedShip.ship.upgrade_slots.split(",")
+    const upgradeObjects = this.state.pilotedShip.upgrades.map( (appliedUpgrade) => {
+      return({applied: false, appliedUpgrade})
+    })
+
+    let displayedUpgrades =[]
+
+    upgradeSlots.forEach((slot) => {
+      let slotTaken = false
+       upgradeObjects.forEach( (upgradeObject) => {
+        console.log(upgradeObject)
+        if(upgradeObject.appliedUpgrade.upgrade.slot === slot && !upgradeObject.applied){
+          displayedUpgrades.push(upgradeObject.appliedUpgrade.upgrade.name)
+          slotTaken = true
+        }
+      })
+       if(!slotTaken){
+        displayedUpgrades.push(slot)
+       }
+    })
+
     const basicDetails = <div className="ship-details-top" onClick={this.handleClick}>
       <p>{this.state.pilotedShip.ship.name} - {this.state.pilotedShip.pilot.name} - {this.state.pilotedShip.totalCost()}</p>
 
@@ -32,6 +55,7 @@ class ShipDetails extends React.Component {
 
           {basicDetails}
           <p>{this.state.pilotedShip.ship.stats}</p>
+          {displayedUpgrades}
         </div>
       )
     } else {
