@@ -30,7 +30,7 @@ class NewSquadForm extends React.Component{
       squad = {squad: {name: this.state.squadName, faction: this.state.selectedFaction, user_id: this.state.currentUser.id} }
       const req = new AjaxRequest()
       req.post("http://localhost:5000/api/squads", JSON.stringify(squad), (err, response) =>{
-        // window.location.replace("http://localhost:3000/#/squads")
+        window.location.replace("http://localhost:3000/#/squads/show/" + response.id)
       })
     } 
   }
