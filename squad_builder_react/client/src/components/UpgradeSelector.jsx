@@ -13,6 +13,7 @@ class UpgradeSelector extends React.Component{
     }
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
+    this.selectUpgrade = this.selectUpgrade.bind(this)
   }
 
   fetchUpgrades(){
@@ -44,6 +45,10 @@ class UpgradeSelector extends React.Component{
     modal.style.display = "none"
   }
 
+  selectUpgrade(event){
+    console.log(event.target.value)
+  }
+
   render(){
     let text
     if(this.state.currentUpgrade){
@@ -52,11 +57,15 @@ class UpgradeSelector extends React.Component{
       text = this.state.slot
     }
 
-    const visibleUpgrades = this.state.upgrades.map((upgrade) => {
+    const visibleUpgrades = this.state.upgrades.map((upgrade, index) => {
       if (upgrade.slot === this.state.slot){
-        return (<p>{upgrade.name}</p>)
+        return (
+          <button value={index} onClick={this.selectUpgrade}>{upgrade.name}</button>
+        )
       }
     })
+
+    visibleUpgrades.push(<button value={-1} onClick={this.selectUpgrade}>None</button>)
 
     return(
       <div>
