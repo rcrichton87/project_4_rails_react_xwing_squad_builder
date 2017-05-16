@@ -35,7 +35,7 @@ class SquadsContainer extends React.Component {
 
   render(){
     const squads = this.state.squads.map((squad, index) => {
-      return( <Link key={index} to={"/squads/" + squad.id} >{squad.name}</Link> )
+      return( <Link key={index} to={"/squads/show/" + squad.id} >{squad.name}</Link> )
     })
 
     return(

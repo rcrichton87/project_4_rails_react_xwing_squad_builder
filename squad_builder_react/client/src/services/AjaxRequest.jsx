@@ -23,6 +23,7 @@ class AjaxRequest{
     this.xhr.setRequestHeader("Content-Type", "application/json")
 
     this.xhr.onload = () => {
+      console.log(this.xhr.response)
       done(null, JSON.parse(this.xhr.response))
     }
 
