@@ -49,8 +49,8 @@ class ShipDetails extends React.Component {
        }
     })
 
-    const basicDetails = <div>
-      <div className="ship-details-top" onClick={this.handleClick}>
+    const basicDetails = <div className="ship-details-top">
+      <div onClick={this.handleClick}>
         <p>{this.state.pilotedShip.ship.name} - {this.state.pilotedShip.pilot.name} - {this.state.pilotedShip.totalCost()}</p>
         </div>
       <button value={pilotedShip.id} onClick={this.deleteShip}>x</button>

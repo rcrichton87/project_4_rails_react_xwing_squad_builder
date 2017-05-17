@@ -45,7 +45,7 @@ class SquadsContainer extends React.Component {
   render(){
     const squads = this.state.squads.map((squad, index) => {
       return(
-        <div className="squad-list-item">
+        <div key={index} className="squad-list-item">
           <SquadListDetails squad={squad} />
           <button value={index} onClick={this.deleteSquad}>x</button>
         </div>
