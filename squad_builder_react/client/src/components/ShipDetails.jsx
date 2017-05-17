@@ -28,8 +28,6 @@ class ShipDetails extends React.Component {
   }
 
   render(){
-    console.log(this.state.pilotedShip.pilot.name, this.state.pilotedShip)
-
     let cost = this.state.pilotedShip.ship.cost + this.state.pilotedShip.pilot.cost
     this.state.pilotedShip.applied_upgrades.forEach((appliedUpgrade) => {
       cost += appliedUpgrade.upgrade.cost

@@ -19,6 +19,7 @@ class AjaxRequest{
   }
 
   post(url, payload, done){
+    console.log(url)
     this.xhr.open("POST", url)
     this.xhr.setRequestHeader("Content-Type", "application/json")
 

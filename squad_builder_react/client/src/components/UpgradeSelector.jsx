@@ -47,17 +47,18 @@ class UpgradeSelector extends React.Component{
   }
 
   selectUpgrade(event){
+    console.log(this.state.currentUpgrade)
     const selectedUpgrade = this.state.upgrades[event.target.value]
     const req = new AjaxRequest()
     if(selectedUpgrade && this.state.currentUpgrade){
       req.post("http://localhost:5000/api/applied_upgrades/edit/" + this.state.pilotedShip.id + "/" + this.state.currentUpgrade.id, JSON.stringify({upgrade_id: selectedUpgrade.id}), (error, response) => {
         this.props.updateUpgrades(response.applied_upgrades)
-        this.setState({currentUpgrade: {upgrade: response.upgrade}})
+        this.setState({currentUpgrade: {id: this.state.currentUpgrade.id, upgrade: response.upgrade}})
       })
     } else if (selectedUpgrade) {
       req.post("http://localhost:5000/api/applied_upgrades", JSON.stringify({upgrade_id: selectedUpgrade.id, piloted_ship_id: this.state.pilotedShip.id}), (error, response) => {
         this.props.updateUpgrades(response.applied_upgrades)
-        this.setState({currentUpgrade: {upgrade: response.upgrade}})
+        this.setState({currentUpgrade: {id: this.state.currentUpgrade.id, upgrade: response.upgrade}})
       })
     } else {
       if(this.state.currentUpgrade){
