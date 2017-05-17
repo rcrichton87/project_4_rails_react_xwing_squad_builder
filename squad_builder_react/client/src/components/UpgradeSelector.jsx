@@ -72,11 +72,11 @@ class UpgradeSelector extends React.Component{
   }
 
   render(){
-    let text
+    let button
     if(this.state.currentUpgrade){
-      text = this.state.currentUpgrade.upgrade.name
+      button =<button onClick={this.openModal}>{this.state.currentUpgrade.upgrade.name}</button>
     } else {
-      text = this.state.slot
+      button =<button onClick={this.openModal}>{this.state.slot}</button>
     }
 
     const visibleUpgrades = this.state.upgrades.map((upgrade, index) => {
@@ -98,7 +98,7 @@ class UpgradeSelector extends React.Component{
           </div>
         </div>
         <div onClick={this.openModal}>
-          {text}
+          {button}
         </div>
       </div>
     )
