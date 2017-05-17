@@ -9,7 +9,7 @@ class SquadsController < ApplicationController
           only: [:id],
           include: {
             pilot: {
-              only: [:id, :name, :cost, :pilot_skill, :ability]
+              only: [:id, :name, :cost, :pilot_skill, :ability, :ept]
               },
             ship: {
               only: [:id, :name, :cost, :faction, :stats, :upgrade_slots]
@@ -41,7 +41,7 @@ class SquadsController < ApplicationController
           only: [:id],
           include: {
             pilot: {
-              only: [:id, :name, :cost, :pilot_skill, :ability]
+              only: [:id, :name, :cost, :pilot_skill, :ability, :ept]
               },
             ship: {
               only: [:id, :name, :cost, :faction, :stats, :upgrade_slots]

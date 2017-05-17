@@ -62,7 +62,7 @@ class SquadContainer extends React.Component {
         cost += applied_upgrade.upgrade.cost
       })
       return(
-        <ShipDetails handleDelete={this.deleteShip} squadId={this.state.squad.id} ship={pilotedShip} key={index} />
+        <ShipDetails updateSquad={this.fetchSquad} handleDelete={this.deleteShip} squadId={this.state.squad.id} ship={pilotedShip} key={index} />
       )
     })
     return(

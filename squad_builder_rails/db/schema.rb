@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170512094624) do
+ActiveRecord::Schema.define(version: 20170517183111) do
 
   create_table "applied_upgrades", force: :cascade do |t|
     t.integer  "piloted_ship_id"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20170512094624) do
     t.integer  "ship_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.boolean  "ept"
   end
 
   add_index "pilots", ["ship_id"], name: "index_pilots_on_ship_id"

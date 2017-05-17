@@ -25,6 +25,7 @@ class ShipDetails extends React.Component {
 
   updateUpgrades(upgrades){
     this.setState({pilotedShip: {pilot: this.state.pilotedShip.pilot, ship: this.state.pilotedShip.ship, applied_upgrades: upgrades}})
+    this.props.updateSquad()
   }
 
   render(){
@@ -34,12 +35,15 @@ class ShipDetails extends React.Component {
     })
 
     const upgradeSlots = this.state.pilotedShip.ship.upgrade_slots.split(",")
+    if(this.state.pilotedShip.pilot.ept){
+      upgradeSlots.push("elite pilot talent")
+    }
     const upgradeObjects = this.state.pilotedShip.applied_upgrades.map( (appliedUpgrade) => {
       return({applied: false, appliedUpgrade})
     })
 
     let displayedUpgrades =[]
-
+    console.log(this.state.pilotedShip.pilot)
     upgradeSlots.forEach((slot, index) => {
       let slotTaken = false
        upgradeObjects.forEach( (upgradeObject) => {
