@@ -14,22 +14,23 @@ class SquadContainer extends React.Component {
     }
     this.deleteShip = this.deleteShip.bind(this)
     this.addShip = this.addShip.bind(this)
+    this.fetchSquad = this.fetchSquad.bind(this)
   }
 
- fetchSquad(){
-   const req = new AjaxRequest()
-   req.get( `http://localhost:5000/api/squads/${this.props.match.params.id}`, (err, squad, status) => { 
-     if (err) { 
-       throw err
-     } 
+  fetchSquad(){
+    const req = new AjaxRequest()
+    req.get( `http://localhost:5000/api/squads/${this.props.match.params.id}`, (err, squad, status) => { 
+      if (err) { 
+        throw err
+      } 
 
-     if(status === 200){
-       this.setState({ 
-         squad: squad
-       })
-     }
-   }) 
- }
+      if(status === 200){
+        this.setState({ 
+          squad: squad
+        })
+      }
+    }) 
+  }
 
  componentDidMount(){
    this.fetchSquad()
@@ -50,7 +51,6 @@ class SquadContainer extends React.Component {
  }
 
   render(){
-    console.log(this.state.squad)
     if(!this.state.squad){
       return(<div></div>)
     }

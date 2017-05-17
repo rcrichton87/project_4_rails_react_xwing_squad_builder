@@ -10,6 +10,7 @@ class UpgradeSelector extends React.Component{
       currentUpgrade: null || this.props.upgrade,
       index: this.props.index,
       upgrades: [],
+      pilotedShip: this.props.pilotedShip
     }
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
@@ -49,19 +50,24 @@ class UpgradeSelector extends React.Component{
     const selectedUpgrade = this.state.upgrades[event.target.value]
     const req = new AjaxRequest()
     if(selectedUpgrade && this.state.currentUpgrade){
-      req.post("http://localhost:5000/api/applied_upgrades/edit/" + this.state.currentUpgrade.id, JSON.stringify({upgrade_id: selectedUpgrade.id}), (error, response) => {
+      req.post("http://localhost:5000/api/applied_upgrades/edit/" + this.state.pilotedShip.id + "/" + this.state.currentUpgrade.id, JSON.stringify({upgrade_id: selectedUpgrade.id}), (error, response) => {
+        this.props.updateUpgrades(response.applied_upgrades)
         this.setState({currentUpgrade: {upgrade: response.upgrade}})
       })
     } else if (selectedUpgrade) {
-      req.post("http://localhost:5000/api/applied_upgrades", JSON.stringify({upgrade_id: selectedUpgrade.id, piloted_ship_id: this.props.pilotedShip.id}), (error, response) => {
+      req.post("http://localhost:5000/api/applied_upgrades", JSON.stringify({upgrade_id: selectedUpgrade.id, piloted_ship_id: this.state.pilotedShip.id}), (error, response) => {
+        this.props.updateUpgrades(response.applied_upgrades)
         this.setState({currentUpgrade: {upgrade: response.upgrade}})
       })
     } else {
-      req.delete("http://localhost:5000/api/applied_upgrades/" + this.state.currentUpgrade.id, (error, response) => {
-        this.setState({currentUpgrade: null})
-      })
+      if(this.state.currentUpgrade){
+        req.delete("http://localhost:5000/api/applied_upgrades/" + this.state.pilotedShip.id + "/" +  this.state.currentUpgrade.id, (error, response) => {
+          this.props.updateUpgrades(response.applied_upgrades)
+          this.setState({currentUpgrade: null})
+        })
+      }
     }
-
+    this.closeModal()
   }
 
   render(){

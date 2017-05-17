@@ -7,11 +7,12 @@ class ShipDetails extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      pilotedShip: new PilotedShip(props.ship),
+      pilotedShip: props.ship,
       expanded: false
     }
     this.handleClick = this.handleClick.bind(this)
     this.deleteShip = this.deleteShip.bind(this)
+    this.updateUpgrades = this.updateUpgrades.bind(this)
   }
 
   handleClick(){
@@ -19,16 +20,23 @@ class ShipDetails extends React.Component {
   }
 
   deleteShip(event){
-    console.log(this)
     this.props.handleDelete(event.target.value)
   }
 
+  updateUpgrades(upgrades){
+    this.setState({pilotedShip: {pilot: this.state.pilotedShip.pilot, ship: this.state.pilotedShip.ship, applied_upgrades: upgrades}})
+  }
+
   render(){
+    console.log(this.state.pilotedShip.pilot.name, this.state.pilotedShip)
 
-    const pilotedShip = this.state.pilotedShip
+    let cost = this.state.pilotedShip.ship.cost + this.state.pilotedShip.pilot.cost
+    this.state.pilotedShip.applied_upgrades.forEach((appliedUpgrade) => {
+      cost += appliedUpgrade.upgrade.cost
+    })
 
-    const upgradeSlots = pilotedShip.ship.upgrade_slots.split(",")
-    const upgradeObjects = this.state.pilotedShip.upgrades.map( (appliedUpgrade) => {
+    const upgradeSlots = this.state.pilotedShip.ship.upgrade_slots.split(",")
+    const upgradeObjects = this.state.pilotedShip.applied_upgrades.map( (appliedUpgrade) => {
       return({applied: false, appliedUpgrade})
     })
 
@@ -37,23 +45,22 @@ class ShipDetails extends React.Component {
     upgradeSlots.forEach((slot, index) => {
       let slotTaken = false
        upgradeObjects.forEach( (upgradeObject) => {
-        console.log(upgradeObject)
         if(upgradeObject.appliedUpgrade.upgrade.slot === slot && !upgradeObject.applied){
-          displayedUpgrades.push(<UpgradeSelector key={index} pilotedShip={pilotedShip} index={index} upgrade={upgradeObject.appliedUpgrade} slot={slot} />)
+          displayedUpgrades.push(<UpgradeSelector updateUpgrades={this.updateUpgrades} key={index} pilotedShip={this.state.pilotedShip} index={index} upgrade={upgradeObject.appliedUpgrade} slot={slot} />)
           slotTaken = true
           upgradeObject.applied = true
         }
       })
        if(!slotTaken){
-        displayedUpgrades.push(<UpgradeSelector key={index} pilotedShip={pilotedShip} index={index} slot={slot} />)
+        displayedUpgrades.push(<UpgradeSelector updateUpgrades={this.updateUpgrades} key={index} pilotedShip={this.state.pilotedShip} index={index} slot={slot} />)
        }
     })
 
     const basicDetails = <div className="ship-details-top">
       <div onClick={this.handleClick}>
-        <p>{this.state.pilotedShip.ship.name} - {this.state.pilotedShip.pilot.name} - {this.state.pilotedShip.totalCost()}</p>
+        <p>{this.state.pilotedShip.ship.name} - {this.state.pilotedShip.pilot.name} - {cost}</p>
         </div>
-      <button value={pilotedShip.id} onClick={this.deleteShip}>x</button>
+      <button value={this.state.pilotedShip} onClick={this.deleteShip}>x</button>
     </div>
 
     if(this.state.expanded){

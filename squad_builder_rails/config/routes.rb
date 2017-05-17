@@ -10,7 +10,8 @@ Rails.application.routes.draw do
     resources :applied_upgrades, defaults: {format: :json}
     post 'squads/:id/add_ship' => 'squads#addShip'
     delete 'squads/:id/delete_ship/:piloted_ship_id' => 'squads#deleteShip'
-    post 'applied_upgrades/edit/:id' => 'applied_upgrades#updateUpgrades'
+    post 'applied_upgrades/edit/:piloted_ship_id/:id' => 'applied_upgrades#updateUpgrades'
+    delete 'applied_upgrades/:piloted_ship_id/:id' => 'applied_upgrades#destroy'
   end
 
 
