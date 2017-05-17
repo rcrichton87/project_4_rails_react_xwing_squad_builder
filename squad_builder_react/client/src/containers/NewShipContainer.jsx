@@ -49,7 +49,10 @@ class NewShipContainer extends React.Component{
     }
 
     const ships = this.state.ships.map((ship, index) => {
-      return(<NewShipComponent key={index} ship={ship} handleClick={this.handleClick} />)
+      if(ship.faction === this.props.faction){
+        return(<NewShipComponent key={index} ship={ship} handleClick={this.handleClick} />)
+      }
+      
     })
 
     return(
