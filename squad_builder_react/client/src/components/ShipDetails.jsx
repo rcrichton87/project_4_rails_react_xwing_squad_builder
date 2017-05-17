@@ -11,10 +11,16 @@ class ShipDetails extends React.Component {
       expanded: false
     }
     this.handleClick = this.handleClick.bind(this)
+    this.deleteShip = this.deleteShip.bind(this)
   }
 
   handleClick(){
     this.setState({expanded: !this.state.expanded})
+  }
+
+  deleteShip(event){
+    console.log(this)
+    this.props.handleDelete(event.target.value)
   }
 
   render(){
@@ -33,22 +39,20 @@ class ShipDetails extends React.Component {
        upgradeObjects.forEach( (upgradeObject) => {
         console.log(upgradeObject)
         if(upgradeObject.appliedUpgrade.upgrade.slot === slot && !upgradeObject.applied){
-          displayedUpgrades.push(<UpgradeSelector pilotedShip={pilotedShip} index={index} upgrade={upgradeObject.appliedUpgrade} slot={slot} />)
+          displayedUpgrades.push(<UpgradeSelector key={index} pilotedShip={pilotedShip} index={index} upgrade={upgradeObject.appliedUpgrade} slot={slot} />)
           slotTaken = true
           upgradeObject.applied = true
         }
       })
        if(!slotTaken){
-        displayedUpgrades.push(<UpgradeSelector pilotedShip={pilotedShip} index={index} slot={slot} />)
+        displayedUpgrades.push(<UpgradeSelector key={index} pilotedShip={pilotedShip} index={index} slot={slot} />)
        }
     })
 
     const basicDetails = <div className="ship-details-top" onClick={this.handleClick}>
       <p>{this.state.pilotedShip.ship.name} - {this.state.pilotedShip.pilot.name} - {this.state.pilotedShip.totalCost()}</p>
 
-      <form action={"http://localhost:5000/api/squads/" + this.props.squadId + "/delete_ship/" + this.state.pilotedShip.id} method="post">
-        <input type="submit" value="x"/>
-      </form>
+      <button value={pilotedShip.id} onClick={this.deleteShip}>x</button>
     </div>
 
     if(this.state.expanded){

@@ -72,7 +72,7 @@ class SquadsController < ApplicationController
 
   def deleteShip
     pilotedShip = PilotedShip.destroy(params[:piloted_ship_id])
-    redirect_to "http://localhost:3000/#/squads/show/" + params[:id]
+    render json: {status: :deleted}
   end
 
   private

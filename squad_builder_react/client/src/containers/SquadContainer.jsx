@@ -11,8 +11,8 @@ class SquadContainer extends React.Component {
     super(props)
     this.state = {
       squad: null,
-      squadId: null
     }
+    this.deleteShip = this.deleteShip.bind(this)
   }
 
  fetchSquad(){
@@ -34,6 +34,13 @@ class SquadContainer extends React.Component {
    this.fetchSquad()
  }
 
+ deleteShip(pilotedShipId){
+  const req = new AjaxRequest()
+  req.delete("http://localhost:5000/api/squads/" + this.state.squad.id + "/delete_ship/" + pilotedShipId, (error, response) => {
+    this.fetchSquad()
+  })
+ }
+
   render(){
     console.log(this.state.squad)
     if(!this.state.squad){
@@ -41,7 +48,7 @@ class SquadContainer extends React.Component {
     }
     const ships = this.state.squad.piloted_ships.map((pilotedShip, index) => {
       return(
-        <ShipDetails squadId={this.props.match.params.id} ship={pilotedShip} key={index} />
+        <ShipDetails handleDelete={this.deleteShip} squadId={this.state.squad.id} ship={pilotedShip} key={index} />
       )
     })
     return(

@@ -75,12 +75,12 @@ class UpgradeSelector extends React.Component{
     const visibleUpgrades = this.state.upgrades.map((upgrade, index) => {
       if (upgrade.slot === this.state.slot){
         return (
-          <button value={index} onClick={this.selectUpgrade}>{upgrade.name}</button>
+          <button key={index} value={index} onClick={this.selectUpgrade}>{upgrade.name}</button>
         )
       }
     })
 
-    visibleUpgrades.push(<button value={-1} onClick={this.selectUpgrade}>None</button>)
+    visibleUpgrades.push(<button key={-1} value={-1} onClick={this.selectUpgrade}>None</button>)
 
     return(
       <div>
