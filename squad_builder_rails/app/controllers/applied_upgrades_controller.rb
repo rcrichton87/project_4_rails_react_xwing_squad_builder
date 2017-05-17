@@ -19,4 +19,9 @@ class AppliedUpgradesController < ApplicationController
     render json: {upgrade: upgrade}
   end
 
+  def destroy
+    AppliedUpgrade.destroy(params[:id])
+    render json:{status: :deleted}
+  end
+
 end

@@ -7,7 +7,7 @@ class UpgradeSelector extends React.Component{
     super(props)
     this.state = {
       slot: this.props.slot,
-      currentUpgrade: this.props.upgrade,
+      currentUpgrade: null || this.props.upgrade,
       index: this.props.index,
       upgrades: [],
     }
@@ -57,7 +57,9 @@ class UpgradeSelector extends React.Component{
         this.setState({currentUpgrade: {upgrade: response.upgrade}})
       })
     } else {
-      console.log("picked none")
+      req.delete("http://localhost:5000/api/applied_upgrades/" + this.state.currentUpgrade.id, (error, response) => {
+        this.setState({currentUpgrade: null})
+      })
     }
 
   }
