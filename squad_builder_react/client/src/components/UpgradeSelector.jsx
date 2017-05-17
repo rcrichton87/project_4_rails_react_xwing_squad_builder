@@ -51,20 +51,17 @@ class UpgradeSelector extends React.Component{
     const req = new AjaxRequest()
     if(selectedUpgrade && this.state.currentUpgrade){
       req.post("http://localhost:5000/api/applied_upgrades/edit/" + this.state.pilotedShip.id + "/" + this.state.currentUpgrade.id, JSON.stringify({upgrade_id: selectedUpgrade.id}), (error, response) => {
-        console.log(response)
         this.props.updateUpgrades(response.applied_upgrades)
         this.setState({currentUpgrade: {id: this.state.currentUpgrade.id, upgrade: response.upgrade}})
       })
     } else if (selectedUpgrade) {
       req.post("http://localhost:5000/api/applied_upgrades", JSON.stringify({upgrade_id: selectedUpgrade.id, piloted_ship_id: this.state.pilotedShip.id}), (error, response) => {
-        console.log(response)
         this.props.updateUpgrades(response.applied_upgrades)
         this.setState({currentUpgrade: {id: response.applied_upgrade.id, upgrade: response.upgrade}})
       })
     } else {
       if(this.state.currentUpgrade){
         req.delete("http://localhost:5000/api/applied_upgrades/" + this.state.pilotedShip.id + "/" +  this.state.currentUpgrade.id, (error, response) => {
-          console.log(response)
           this.props.updateUpgrades(response.applied_upgrades)
           this.setState({currentUpgrade: null})
         })
@@ -111,7 +108,7 @@ class UpgradeSelector extends React.Component{
             {selectableUpgrades}
           </div>
         </div>
-        <div onClick={this.openModal}>
+        <div>
           {upgradeSelector}
         </div>
       </div>

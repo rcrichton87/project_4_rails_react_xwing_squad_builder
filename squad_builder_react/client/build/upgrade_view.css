@@ -6,7 +6,13 @@
 .upgrade-container{
     display: flex;
     flex-direction: column;
-    border-bottom: solid 1px #999999
+    padding-left: 30px;
+    border-top: solid 1px #999999
+}
+
+.upgrade-container p{
+    font-size: 0.8em;
+    color: #888888
 }
 
 .change-upgrade-button-row{
@@ -19,6 +25,13 @@
 .change-upgrade-button-row button{
     height: 50%;
     margin-right: 10px;
+}
+
+.change-upgrade-button-row p{
+    height: 50%;
+    margin-right: 10px;
+    font-size: 0.8em;
+    color: #333333
 }
 
 .modal {
