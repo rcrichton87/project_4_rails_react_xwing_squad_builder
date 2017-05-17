@@ -1,0 +1,103 @@
+.squad-view{
+  display: flex;
+  flex-direction: row;
+}
+
+.new-ship-container{
+  border-right: 1px solid #222222;
+  border-left: 1px solid #222222;
+  border-bottom: 1px solid #222222;
+  width: 20%;
+}
+
+.squad-name{
+  font-size: 2em;
+  border-bottom: 1px solid #222222;
+  padding-bottom: 10px;
+  margin-bottom: 0px;
+}
+
+.ship-list{
+  width: 100%;
+}
+
+.ship-details-top{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.pilot-ability{
+  font-size: 0.8em;
+  color: #888888
+}
+
+.basic-upgrades{
+  display: flex;
+  flex-direction: row;
+}
+
+.basic-upgrade{
+  font-size: 0.6em;
+  color: #888888;
+  padding-right: 5px;
+}
+
+.ship-container{
+  border-right: 1px solid #222222;
+  border-bottom: 1px solid #222222;
+  cursor: pointer;
+}
+
+.ship-container-expanded{
+  border-right: 1px solid #222222;
+  border-bottom: 1px solid #222222;
+  cursor: pointer;
+}
+
+.stats{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: -40px;
+  margin-bottom: -30px;
+}
+
+.pilot-skill{
+  font-size: 2em;
+  padding-right: 10px;
+  color: #F47F1F;
+}
+
+.attack{
+  font-size: 1.5em;
+  padding-right: 10px;
+  color: #D72547;
+}
+
+.agility{
+  font-size: 1.5em;
+  padding-right: 10px;
+  color: #88C24B;
+}
+
+.hull{
+  font-size: 1.5em;
+  padding-right: 10px;
+  color: #EDE938;
+}
+
+.shields{
+  font-size: 1.5em;
+  padding-right: 10px;
+  color: #88CFE2;
+}
+
+.delete-ship{
+  width: 20px;
+  height: 20px;
+}
+
+.delete-ship:hover{
+  background-color: red;
+}

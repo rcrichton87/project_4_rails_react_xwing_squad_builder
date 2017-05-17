@@ -44,6 +44,7 @@ class SquadContainer extends React.Component {
  }
 
  deleteShip(pilotedShipId){
+  console.log
   const req = new AjaxRequest()
   req.delete("http://localhost:5000/api/squads/" + this.state.squad.id + "/delete_ship/" + pilotedShipId, (error, response) => {
     this.fetchSquad()
@@ -64,11 +65,11 @@ class SquadContainer extends React.Component {
         <Navbar />
         <div className="squad-view">
           <NewShipContainer addShip={this.addShip} faction={this.state.squad.faction} />
-          <div>
-            <p>{this.state.squad.name}</p>
-            <ul>
+          <div className="ship-list">
+            <h1 className="squad-name">{this.state.squad.name}</h1>
+            <div>
               {ships}
-            </ul>
+            </div>
           </div>
         </div>
       </div>

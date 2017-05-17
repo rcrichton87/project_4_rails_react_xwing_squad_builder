@@ -56,7 +56,7 @@ class NewShipContainer extends React.Component{
     })
 
     return(
-      <div>
+      <div className="new-ship-container">
         {addShip}
         {ships}
       </div>

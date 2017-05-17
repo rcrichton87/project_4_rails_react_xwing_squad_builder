@@ -20,6 +20,7 @@ class ShipDetails extends React.Component {
   }
 
   deleteShip(event){
+    console.log(event.target)
     this.props.handleDelete(event.target.value)
   }
 
@@ -57,21 +58,22 @@ class ShipDetails extends React.Component {
     const basicDetails = <div className="ship-details-top">
       <div onClick={this.handleClick}>
         <p>{this.state.pilotedShip.ship.name} - {this.state.pilotedShip.pilot.name} - {cost}</p>
-        <p>{this.state.pilotedShip.pilot.ability}</p>
+        <p className="pilot-ability">{this.state.pilotedShip.pilot.ability}</p>
         </div>
-      <button value={this.state.pilotedShip} onClick={this.deleteShip}>x</button>
+      <button className="delete-ship" value={this.state.pilotedShip.id} onClick={this.deleteShip}>x</button>
     </div>
 
     const basicUpgrades = this.state.pilotedShip.applied_upgrades.map((applied_upgrade, index) => {
-      return(<p key={index}>{applied_upgrade.upgrade.name}</p>)
+      return(<p className="basic-upgrade" key={index}>{applied_upgrade.upgrade.name}</p>)
     })
 
     const stats = this.state.pilotedShip.ship.stats.split(",")
     const displayStats = <div className="stats">
-      <p className="attack">{stats[0]}</p>
-      <p className="agility">{stats[1]}</p>
-      <p className="hull">{stats[2]}</p>
-      <p className="shields">{stats[3]}</p>
+      <p className="pilot-skill">PS: {this.state.pilotedShip.pilot.pilot_skill}</p>
+      <p className="attack">Attack: {stats[0]}</p>
+      <p className="agility">Agility: {stats[1]}</p>
+      <p className="hull">Hull: {stats[2]}</p>
+      <p className="shields">Shields: {stats[3]}</p>
     </div>
 
 
@@ -91,7 +93,7 @@ class ShipDetails extends React.Component {
       return(
         <div className="ship-container">
           {basicDetails}
-          <div>
+          <div className="basic-upgrades">
             {basicUpgrades}
           </div>
         </div>

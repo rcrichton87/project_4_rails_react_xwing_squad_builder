@@ -1,17 +1,7 @@
 body{
   background-color: #FFFFF3;
   font-family: "Verdana", sans-serif;
-}
-
-
-.squad-view{
-  display: flex;
-  flex-direction: row;
-}
-
-.ship-details-top{
-  display: flex;
-  flex-direction: row;
+  color: #333333
 }
 
 .pilots{
