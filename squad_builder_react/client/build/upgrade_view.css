@@ -48,11 +48,21 @@
 }
 
 .modal-content {
+    display: flex;
+    flex-direction: column;
     background-color: #fefefe;
     margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
     width: 80%; 
+}
+
+.upgrade-list-item{
+    border: 1px solid black;
+}
+
+.upgrade-list-item button{
+    width: 100%;
 }
 
 .close {
