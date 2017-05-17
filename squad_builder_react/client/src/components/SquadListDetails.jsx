@@ -25,7 +25,7 @@ class SquadListDetails extends React.Component {
     })
 
     return(
-      <div onClick={this.displaySquad}>
+      <div className="squad-list-details" onClick={this.displaySquad}>
         <p>{squad.name} - {cost}</p>
         <div className="pilots">
           {pilots}

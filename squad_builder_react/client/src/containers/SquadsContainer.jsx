@@ -47,7 +47,7 @@ class SquadsContainer extends React.Component {
       return(
         <div key={index} className="squad-list-item">
           <SquadListDetails squad={squad} />
-          <button value={index} onClick={this.deleteSquad}>x</button>
+          <button className="delete-squad" value={index} onClick={this.deleteSquad}>x</button>
         </div>
       )
     })
