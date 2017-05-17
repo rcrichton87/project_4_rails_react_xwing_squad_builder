@@ -9,7 +9,7 @@ class UpgradeSelector extends React.Component{
       slot: this.props.slot,
       currentUpgrade: this.props.upgrade,
       index: this.props.index,
-      upgrades: []
+      upgrades: [],
     }
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
@@ -53,7 +53,9 @@ class UpgradeSelector extends React.Component{
         this.setState({currentUpgrade: {upgrade: response.upgrade}})
       })
     } else if (selectedUpgrade) {
-      console.log("picked an upgrade, none present")
+      req.post("http://localhost:5000/api/applied_upgrades", JSON.stringify({upgrade_id: selectedUpgrade.id, piloted_ship_id: this.props.pilotedShip.id}), (error, response) => {
+        this.setState({currentUpgrade: {upgrade: response.upgrade}})
+      })
     } else {
       console.log("picked none")
     }
