@@ -1,0 +1,31 @@
+.navbar{
+  display: flex;
+  background-color: #A71F24;
+  padding: 10px;
+  border: solid 1px #222222;
+  align-items: center;
+}
+
+.logo{
+  max-width: 125px;
+  height: auto;
+  padding-right: 10px;
+}
+
+.navbar-link{
+  background-color: #FFFFF3;
+  padding: 10px 20px 10px 20px;
+  margin-right: 10px;
+  border: solid 2px #FFFFCC;
+  transition-duration: 0.4s;
+  color: #333333;
+  text-decoration: none;
+}
+
+.navbar-link:hover{
+  background-color: #A71F24;
+  padding: 10px 20px 10px 20px;
+  margin-right: 10px;
+  border: solid 2px #F44336;
+  color: #EEEEEE
+}
