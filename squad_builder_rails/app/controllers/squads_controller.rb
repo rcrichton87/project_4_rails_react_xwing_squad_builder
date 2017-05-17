@@ -67,7 +67,7 @@ class SquadsController < ApplicationController
 
   def addShip
     pilotedShip = PilotedShip.create({squad_id: params[:id], pilot_id: params[:pilot_id], ship_id: params[:ship_id]})
-    redirect_to "http://localhost:3000/#/squads/show/" + params[:id]
+    render json: {ship: pilotedShip}
   end
 
   def deleteShip

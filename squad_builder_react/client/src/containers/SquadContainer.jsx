@@ -13,6 +13,7 @@ class SquadContainer extends React.Component {
       squad: null,
     }
     this.deleteShip = this.deleteShip.bind(this)
+    this.addShip = this.addShip.bind(this)
   }
 
  fetchSquad(){
@@ -32,6 +33,13 @@ class SquadContainer extends React.Component {
 
  componentDidMount(){
    this.fetchSquad()
+ }
+
+ addShip(pilotId, shipId){
+   const req = new AjaxRequest()
+   req.post("http://localhost:5000/api/squads/"+ this.state.squad.id + "/add_ship/", JSON.stringify({pilot_id: pilotId, ship_id: shipId}), (error, response) => {
+     this.fetchSquad()
+   })
  }
 
  deleteShip(pilotedShipId){
@@ -55,7 +63,7 @@ class SquadContainer extends React.Component {
       <div>
         <Navbar />
         <div className="squad-view">
-          <NewShipsContainer squadId={this.state.squad.id} />
+          <NewShipsContainer addShip={this.addShip} squadId={this.state.squad.id} />
           <div>
             <p>{this.state.squad.name}</p>
             <ul>

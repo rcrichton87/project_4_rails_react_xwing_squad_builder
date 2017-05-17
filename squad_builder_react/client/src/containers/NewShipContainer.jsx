@@ -12,6 +12,7 @@ class NewShipContainer extends React.Component{
       selectedShip: null
     }
     this.handleClick = this.handleClick.bind(this)
+    this.addPilotedShip = this.addPilotedShip.bind(this)
   }
 
   fetchShips(){
@@ -35,15 +36,16 @@ class NewShipContainer extends React.Component{
 
   handleClick(pilot, ship){
     this.setState({selectedPilot: pilot, selectedShip: ship})
-    console.log('click')
+  }
+
+  addPilotedShip(){
+    this.props.addShip(this.state.selectedPilot.id, this.state.selectedShip.id)
   }
 
   render(){
     let addShip=<p>Select a Pilot</p>
     if(this.state.selectedPilot && this.state.selectedShip){
-      addShip = <form action={"http://localhost:5000/api/squads/" + this.props.squadId + "/add_ship/" + this.state.selectedPilot.id + "/" + this.state.selectedShip.id} method="post">
-        <input type="submit" value={"Add " + this.state.selectedPilot.name}/>
-      </form>
+      addShip = <button onClick={this.addPilotedShip}>{"Add " + this.state.selectedPilot.name}</button>
     }
 
     const ships = this.state.ships.map((ship, index) => {
