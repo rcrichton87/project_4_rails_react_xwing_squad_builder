@@ -1,0 +1,13 @@
+.new-squad{
+  display: flex;
+  flex-direction: column;
+}
+
+.faction-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  align-items: center;
+}

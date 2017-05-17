@@ -59,19 +59,27 @@ class NewSquadForm extends React.Component{
     return(
       <div>
         <Navbar/>
-        <p>New Squad</p>
-        <p>Squad name:</p>
-        <input type="text" name="squadName" onChange={this.handleTextChange}/>
-        <p>Select a faction:</p>
-        <form onChange={this.handleRadioButtonChange}>
-          <label htmlFor="Rebel">Rebel</label>
-          <input type="radio" name="faction" value="Rebel" defaultChecked/>
-          <label htmlFor="Imperial">Imperial</label>
-          <input type="radio" name="faction" value="Imperial"/>
-          <label htmlFor="Scum">Scum & Villiany</label>
-          <input type="radio" name="faction" value="Scum"/>
-        </form>
-        <button onClick={this.submitForm}>Create Squad</button>
+        <div className="new-squad">
+          <h1>New Squad</h1>
+          <p>Squad name:</p>
+          <input type="text" name="squadName" onChange={this.handleTextChange}/>
+          <form className="faction-form" onChange={this.handleRadioButtonChange}>
+            <p>Select a faction:</p>
+            <div className="radio-button">
+              <label htmlFor="Rebel">Rebel</label>
+              <input type="radio" name="faction" value="Rebel" defaultChecked/>
+            </div>
+            <div className="radio-button">
+              <label htmlFor="Imperial">Imperial</label>
+              <input type="radio" name="faction" value="Imperial"/>
+            </div>
+            <div className="radio-button">
+              <label htmlFor="Scum">Scum & Villiany</label>
+              <input type="radio" name="faction" value="Scum"/>
+            </div>
+          </form>
+          <button onClick={this.submitForm}>Create Squad</button>
+        </div>
       </div>
     )
   }
