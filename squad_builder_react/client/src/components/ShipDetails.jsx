@@ -56,7 +56,7 @@ class ShipDetails extends React.Component {
 
     const basicDetails = <div className="ship-details-top">
       <div>
-        <p>{this.state.pilotedShip.ship.name} - {this.state.pilotedShip.pilot.name} - {cost}</p>
+        <p>{this.state.pilotedShip.ship.name} - {this.state.pilotedShip.pilot.name} - {cost} points</p>
         <p className="pilot-ability">{this.state.pilotedShip.pilot.ability}</p>
         </div>
     </div>

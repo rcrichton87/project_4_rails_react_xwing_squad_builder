@@ -10,7 +10,7 @@ class SquadContainer extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      squad: null,
+      squad: null
     }
     this.deleteShip = this.deleteShip.bind(this)
     this.addShip = this.addShip.bind(this)
@@ -55,7 +55,12 @@ class SquadContainer extends React.Component {
     if(!this.state.squad){
       return(<div></div>)
     }
+    let cost = 0
     const ships = this.state.squad.piloted_ships.map((pilotedShip, index) => {
+      cost += pilotedShip.ship.cost + pilotedShip.pilot.cost
+      pilotedShip.applied_upgrades.forEach((applied_upgrade) => {
+        cost += applied_upgrade.upgrade.cost
+      })
       return(
         <ShipDetails handleDelete={this.deleteShip} squadId={this.state.squad.id} ship={pilotedShip} key={index} />
       )
@@ -66,7 +71,7 @@ class SquadContainer extends React.Component {
         <div className="squad-view">
           <NewShipContainer addShip={this.addShip} faction={this.state.squad.faction} />
           <div className="ship-list">
-            <h1 className="squad-name">{this.state.squad.name}</h1>
+            <h1 className="squad-name">{this.state.squad.name} - {cost} points</h1>
             <div>
               {ships}
             </div>

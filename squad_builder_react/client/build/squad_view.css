@@ -8,21 +8,49 @@
   flex-direction: row;
   cursor: pointer;
   justify-content: space-between;
+  transition-duration: 0.4s;
+}
+
+.ship-details:hover{
+  background-color: #FFFFBB;
 }
 
 .ship-details-basic{
   display: flex;
   flex-direction: row;
   cursor: pointer;
-  border-right: 1px solid #222222;
   border-bottom: 1px solid #222222;
+  transition-duration: 0.4s;
+}
+
+.ship-details-basic:hover{
+  background-color: #FFFFBB;
 }
 
 .new-ship-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   border-right: 1px solid #222222;
   border-left: 1px solid #222222;
   border-bottom: 1px solid #222222;
   width: 20%;
+}
+
+.new-pilot{
+  color: #888888;
+  margin-left: 20px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.new-pilot{
+  color: #888888;
+  margin-left: 20px;
+}
+
+.new-pilot:hover{
+  background-color: #FFFFBB;
 }
 
 .squad-name{
@@ -34,6 +62,7 @@
 
 .ship-list{
   width: 100%;
+  border-right: 1px solid #222222;
 }
 
 .ship-details-top{
@@ -64,7 +93,6 @@
 
 .ship-container-expanded{
   width: 100%;
-  border-right: 1px solid #222222;
   border-bottom: 2px solid #222222;
 }
 

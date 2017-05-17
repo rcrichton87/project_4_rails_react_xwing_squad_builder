@@ -76,7 +76,7 @@ class UpgradeSelector extends React.Component{
       upgradeSelector = <div className="upgrade-container">
         <div className="change-upgrade-button-row">
           <button onClick={this.openModal}>Change</button>
-          <p>{this.state.currentUpgrade.upgrade.name}</p>
+          <p>{this.state.currentUpgrade.upgrade.name} - {this.state.currentUpgrade.upgrade.cost} points</p>
         </div>
         <p>{this.state.currentUpgrade.upgrade.text}</p>
       </div>
