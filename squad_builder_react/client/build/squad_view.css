@@ -3,6 +3,21 @@
   flex-direction: row;
 }
 
+.ship-details{
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  justify-content: space-between;
+}
+
+.ship-details-basic{
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  border-right: 1px solid #222222;
+  border-bottom: 1px solid #222222;
+}
+
 .new-ship-container{
   border-right: 1px solid #222222;
   border-left: 1px solid #222222;
@@ -44,15 +59,13 @@
 }
 
 .ship-container{
-  border-right: 1px solid #222222;
-  border-bottom: 1px solid #222222;
-  cursor: pointer;
+  width: 100%;
 }
 
 .ship-container-expanded{
+  width: 100%;
   border-right: 1px solid #222222;
   border-bottom: 1px solid #222222;
-  cursor: pointer;
 }
 
 .stats{

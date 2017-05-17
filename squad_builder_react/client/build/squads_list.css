@@ -18,6 +18,17 @@
   width:100%;
 }
 
+.pilots{
+  display: flex;
+  flex-direction: row;
+  font-size: 0.8em;
+}
+
+.pilots p{
+  margin-right: 10px;   
+}
+
+
 .delete-squad{
   width: 20px;
   height: 20px;

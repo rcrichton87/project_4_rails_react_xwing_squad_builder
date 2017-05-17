@@ -20,7 +20,6 @@ class ShipDetails extends React.Component {
   }
 
   deleteShip(event){
-    console.log(event.target)
     this.props.handleDelete(event.target.value)
   }
 
@@ -56,11 +55,10 @@ class ShipDetails extends React.Component {
     })
 
     const basicDetails = <div className="ship-details-top">
-      <div onClick={this.handleClick}>
+      <div>
         <p>{this.state.pilotedShip.ship.name} - {this.state.pilotedShip.pilot.name} - {cost}</p>
         <p className="pilot-ability">{this.state.pilotedShip.pilot.ability}</p>
         </div>
-      <button className="delete-ship" value={this.state.pilotedShip.id} onClick={this.deleteShip}>x</button>
     </div>
 
     const basicUpgrades = this.state.pilotedShip.applied_upgrades.map((applied_upgrade, index) => {
@@ -81,9 +79,13 @@ class ShipDetails extends React.Component {
     if(this.state.expanded){
       return(
         <div className="ship-container-expanded">
-
-          {basicDetails}
-          {displayStats}
+          <div onClick={this.handleClick} className="ship-details">
+            <div>
+              {basicDetails}
+              {displayStats}
+            </div>
+            <button className="delete-ship" value={this.state.pilotedShip.id} onClick={this.deleteShip}>x</button>
+          </div>
           <div className="upgrades-container">
             {displayedUpgrades}
           </div>
@@ -91,11 +93,14 @@ class ShipDetails extends React.Component {
       )
     } else {
       return(
-        <div className="ship-container">
-          {basicDetails}
-          <div className="basic-upgrades">
-            {basicUpgrades}
+        <div onClick={this.handleClick} className="ship-details-basic">
+          <div className="ship-container">
+            {basicDetails}
+            <div className="basic-upgrades">
+              {basicUpgrades}
+            </div>
           </div>
+          <button className="delete-ship" value={this.state.pilotedShip.id} onClick={this.deleteShip}>x</button>
         </div>
       )
     }

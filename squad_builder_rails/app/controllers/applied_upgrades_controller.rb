@@ -22,7 +22,7 @@ class AppliedUpgradesController < ApplicationController
   end
 
   def create
-    AppliedUpgrade.create({upgrade_id: params[:upgrade_id], piloted_ship_id: params[:piloted_ship_id]})
+    applied_upgrade = AppliedUpgrade.create({upgrade_id: params[:upgrade_id], piloted_ship_id: params[:piloted_ship_id]})
     upgrade = Upgrade.find(params[:upgrade_id])
     applied_upgrades = AppliedUpgrade.where(piloted_ship_id: params[:piloted_ship_id]).as_json({
       only: [:id],
@@ -32,7 +32,7 @@ class AppliedUpgradesController < ApplicationController
         }
       }}
     )
-    render json: {upgrade: upgrade, applied_upgrades: applied_upgrades}
+    render json: {upgrade: upgrade, applied_upgrades: applied_upgrades, applied_upgrade: applied_upgrade}
   end
 
   def destroy

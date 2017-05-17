@@ -19,7 +19,6 @@ class AjaxRequest{
   }
 
   post(url, payload, done){
-    console.log(url)
     this.xhr.open("POST", url)
     this.xhr.setRequestHeader("Content-Type", "application/json")
 
@@ -55,7 +54,12 @@ class AjaxRequest{
     this.xhr.setRequestHeader("Content-Type", "application/json")
 
     this.xhr.onload = () => {
-      done(null, this.xhr.status)
+      if(this.xhr.response){
+        done(null, JSON.parse(this.xhr.response))
+      } else {
+        done(null, this.xhr.status)  
+      }
+      
     }
 
     this.xhr.onerror = () => {

@@ -47,22 +47,24 @@ class UpgradeSelector extends React.Component{
   }
 
   selectUpgrade(event){
-    console.log(this.state.currentUpgrade)
     const selectedUpgrade = this.state.upgrades[event.target.value]
     const req = new AjaxRequest()
     if(selectedUpgrade && this.state.currentUpgrade){
       req.post("http://localhost:5000/api/applied_upgrades/edit/" + this.state.pilotedShip.id + "/" + this.state.currentUpgrade.id, JSON.stringify({upgrade_id: selectedUpgrade.id}), (error, response) => {
+        console.log(response)
         this.props.updateUpgrades(response.applied_upgrades)
         this.setState({currentUpgrade: {id: this.state.currentUpgrade.id, upgrade: response.upgrade}})
       })
     } else if (selectedUpgrade) {
       req.post("http://localhost:5000/api/applied_upgrades", JSON.stringify({upgrade_id: selectedUpgrade.id, piloted_ship_id: this.state.pilotedShip.id}), (error, response) => {
+        console.log(response)
         this.props.updateUpgrades(response.applied_upgrades)
-        this.setState({currentUpgrade: {id: this.state.currentUpgrade.id, upgrade: response.upgrade}})
+        this.setState({currentUpgrade: {id: response.applied_upgrade.id, upgrade: response.upgrade}})
       })
     } else {
       if(this.state.currentUpgrade){
         req.delete("http://localhost:5000/api/applied_upgrades/" + this.state.pilotedShip.id + "/" +  this.state.currentUpgrade.id, (error, response) => {
+          console.log(response)
           this.props.updateUpgrades(response.applied_upgrades)
           this.setState({currentUpgrade: null})
         })
@@ -72,14 +74,26 @@ class UpgradeSelector extends React.Component{
   }
 
   render(){
-    let button
+    let upgradeSelector
     if(this.state.currentUpgrade){
-      button =<button onClick={this.openModal}>{this.state.currentUpgrade.upgrade.name}</button>
+      upgradeSelector = <div className="upgrade-container">
+        <div className="change-upgrade-button-row">
+          <button onClick={this.openModal}>Change</button>
+          <p>{this.state.currentUpgrade.upgrade.name}</p>
+        </div>
+        <p>{this.state.currentUpgrade.upgrade.text}</p>
+      </div>
     } else {
-      button =<button onClick={this.openModal}>{this.state.slot}</button>
+      upgradeSelector = <div className="upgrade-container">
+        <div className="change-upgrade-button-row">
+          <button onClick={this.openModal}>Change</button>
+          <p>{this.state.slot}</p>
+        </div>
+        <p>None</p>
+      </div>
     }
 
-    const visibleUpgrades = this.state.upgrades.map((upgrade, index) => {
+    const selectableUpgrades = this.state.upgrades.map((upgrade, index) => {
       if (upgrade.slot === this.state.slot){
         return (
           <button key={index} value={index} onClick={this.selectUpgrade}>{upgrade.name}</button>
@@ -87,18 +101,18 @@ class UpgradeSelector extends React.Component{
       }
     })
 
-    visibleUpgrades.push(<button key={-1} value={-1} onClick={this.selectUpgrade}>None</button>)
+    selectableUpgrades.push(<button key={-1} value={-1} onClick={this.selectUpgrade}>None</button>)
 
     return(
       <div>
         <div id={"modal" + this.state.index} className="modal">
           <div className="modal-content">
             <span onClick={this.closeModal} className="close">&times;</span>
-            {visibleUpgrades}
+            {selectableUpgrades}
           </div>
         </div>
         <div onClick={this.openModal}>
-          {button}
+          {upgradeSelector}
         </div>
       </div>
     )
