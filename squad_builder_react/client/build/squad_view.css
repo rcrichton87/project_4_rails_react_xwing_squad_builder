@@ -30,11 +30,19 @@
 .new-ship-container{
   display: flex;
   flex-direction: column;
-  justify-content: center;
   border-right: 1px solid #222222;
   border-left: 1px solid #222222;
   border-bottom: 1px solid #222222;
   width: 20%;
+}
+
+.ship-name{
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.ship-name:hover{
+  background-color: #FFFFBB;
 }
 
 .new-pilot{
@@ -42,6 +50,7 @@
   margin-left: 20px;
   transition-duration: 0.4s;
   cursor: pointer;
+  font-size: 0.8em;
 }
 
 .new-pilot{
